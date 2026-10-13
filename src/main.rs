@@ -1,8 +1,8 @@
-//! BORUIX \`trave2e\`：目录遍历权限（A2-3 / ADR-040 §3.4）的**真实用户态**验收。
+//! BORUIX `trave2e`：目录遍历权限（A2-3 / ADR-040 §3.4）的**真实用户态**验收。
 //!
-//! 由 shell 内建命令 \`trave2e\` 派生运行。与内核停机测试 \`[test-traverse]\` 互补：
+//! 由 shell 内建命令 `trave2e` 派生运行。与内核停机测试 `[test-traverse]` 互补：
 //! 后者跑在内核态、直接构造 ProcessIdentity；本程序走**真实用户链路**——
-//! 用户态经 libsys \`identity_set\` 真实降级身份，再经 \`stat\` 穿越 syscall 边界，
+//! 用户态经 libsys `identity_set` 真实降级身份，再经 `stat` 穿越 syscall 边界，
 //! 验证遍历检查在真实进程上下文（真实 PCB 身份、真实路径、真实指针校验）中生效。
 //!
 //! 验收判据（multi-user.md A2-3）：「无 x 的目录下文件即使 0644 也不可达（EACCES）」。
